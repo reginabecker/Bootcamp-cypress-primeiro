@@ -199,8 +199,10 @@ git push
 git push --set-upstream origin feature/create-pipeline-file
 
 # Run pipeline com push
-
-
+Modificar projeto
+git add .
+git commit -m "Ajustes para pipeline com push"
+git push
 
 
 
