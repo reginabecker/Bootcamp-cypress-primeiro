@@ -1,0 +1,39 @@
+# Nome da pipeline
+name: Run Basic Testes
+
+# Em que momento será executada ou acada [push]
+on: [push]
+    #pull_request:  
+        #branches: [master]
+
+jobs:
+    # o que vai ser feito nessa pipeline
+    # só teremos um job: rodar os testes
+    cypress-run:
+        # maquina que vai rodar os testes
+        runs-on: ubuntu-latest
+
+        strategy:
+          fail-fast: false
+          matrix:
+            containers: [1, 2] # Uses 2 parallel instances        
+    
+        # passo a passo rodar os testes
+        steps:
+            # Clone do Projeto
+            - name: Checkout/Clone do projeto
+              uses: actions/checkout@v3        
+      
+            # exemplo de execucao no terminal
+            - name: Instalar dependencias do projeto
+              run: npm install
+
+            # execução e configuração do projeto
+            - name: Cypress run
+              uses: cypress-io/github-action@v5
+              with:
+                record: true
+                parallel: true # Runs test in parallel using settings above
+              env:
+                # pass the Cypress Cloud record key as an environment variable
+                CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
