@@ -205,10 +205,3 @@ git commit -m "Ajustes para pipeline com push"
 git push
 
 
-
-
-
-
-
-
-
