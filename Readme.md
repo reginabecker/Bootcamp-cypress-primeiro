@@ -203,5 +203,3 @@ Modificar projeto
 git add .
 git commit -m "Ajustes para pipeline com push"
 git push
-
-
